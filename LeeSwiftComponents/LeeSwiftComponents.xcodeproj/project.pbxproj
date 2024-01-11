@@ -9,12 +9,20 @@
 /* Begin PBXBuildFile section */
 		EBC73DA92B4FBC4600D9318E /* LeeSwiftComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = EBC73DA82B4FBC4600D9318E /* LeeSwiftComponents.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EBC73DB02B4FBC8900D9318E /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = EBC73DAF2B4FBC8900D9318E /* .gitignore */; };
+		EBC73DB52B4FBE4600D9318E /* Customize in Resources */ = {isa = PBXBuildFile; fileRef = EBC73DB12B4FBE4600D9318E /* Customize */; };
+		EBC73DB62B4FBE4600D9318E /* Extension in Resources */ = {isa = PBXBuildFile; fileRef = EBC73DB22B4FBE4600D9318E /* Extension */; };
+		EBC73DB72B4FBE4600D9318E /* Global in Resources */ = {isa = PBXBuildFile; fileRef = EBC73DB32B4FBE4600D9318E /* Global */; };
+		EBC73DB82B4FBE4600D9318E /* Protocol in Resources */ = {isa = PBXBuildFile; fileRef = EBC73DB42B4FBE4600D9318E /* Protocol */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EBC73DA52B4FBC4600D9318E /* LeeSwiftComponents.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LeeSwiftComponents.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBC73DA82B4FBC4600D9318E /* LeeSwiftComponents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeeSwiftComponents.h; sourceTree = "<group>"; };
 		EBC73DAF2B4FBC8900D9318E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		EBC73DB12B4FBE4600D9318E /* Customize */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Customize; sourceTree = "<group>"; };
+		EBC73DB22B4FBE4600D9318E /* Extension */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Extension; sourceTree = "<group>"; };
+		EBC73DB32B4FBE4600D9318E /* Global */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Global; sourceTree = "<group>"; };
+		EBC73DB42B4FBE4600D9318E /* Protocol */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Protocol; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +57,10 @@
 			isa = PBXGroup;
 			children = (
 				EBC73DA82B4FBC4600D9318E /* LeeSwiftComponents.h */,
+				EBC73DB12B4FBE4600D9318E /* Customize */,
+				EBC73DB22B4FBE4600D9318E /* Extension */,
+				EBC73DB32B4FBE4600D9318E /* Global */,
+				EBC73DB42B4FBE4600D9318E /* Protocol */,
 			);
 			path = LeeSwiftComponents;
 			sourceTree = "<group>";
@@ -122,7 +134,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBC73DB52B4FBE4600D9318E /* Customize in Resources */,
 				EBC73DB02B4FBC8900D9318E /* .gitignore in Resources */,
+				EBC73DB82B4FBE4600D9318E /* Protocol in Resources */,
+				EBC73DB62B4FBE4600D9318E /* Extension in Resources */,
+				EBC73DB72B4FBE4600D9318E /* Global in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,7 +206,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -247,7 +263,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -272,6 +288,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -302,6 +319,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
