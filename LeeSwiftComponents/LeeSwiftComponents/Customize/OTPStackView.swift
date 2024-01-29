@@ -8,23 +8,36 @@
 open class OTPStackView: UIStackView {
   
   //Customise the OTPField here
-  public var numberOfFields: Int = 6
+  var numberOfFields: Int = 6
   public var textFieldsCollection: [OTPTextField] = []
   weak public var delegate: OTPDelegate?
   public var showsWarningColor: Bool = false
-  public var textFieldSpacing: CGFloat = 12
-  public var textFieldRadius: CGFloat = 8
-  public var textFieldBorderWidth: CGFloat = 1
-  public var textFieldFont: UIFont = UIFont.systemFont(ofSize: 20, weight: .bold)
+  var textFieldRadius: CGFloat = 8
+  var textFieldBorderWidth: CGFloat = 1
+  var textFieldFont: UIFont = UIFont.systemFont(ofSize: 20, weight: .bold)
   
   //Colors
-  public var stackViewBackgroundColor: UIColor = .clear
-  public var inactiveFieldBorderColor: UIColor = .clear
-  public var textBackgroundColor: UIColor = .white
-  public var activeFieldBorderColor: UIColor = .gray
-  public var textFieldColor: UIColor = .black
+  var inactiveFieldBorderColor: UIColor = .clear
+  var textBackgroundColor: UIColor = .white
+  var activeFieldBorderColor: UIColor = .gray
+  var textFieldColor: UIColor = .black
   
   var remainingStrStack: [String] = []
+  
+  required public init(numberOfFields: Int = 6, textFieldRadius: CGFloat = 8, textFieldBorderWidth: CGFloat = 1, textFieldFont: UIFont = UIFont.systemFont(ofSize: 20, weight: .bold), inactiveFieldBorderColor: UIColor = .clear, textBackgroundColor: UIColor = .white, activeFieldBorderColor: UIColor = .gray, textFieldColor: UIColor = .black) {
+    self.numberOfFields = numberOfFields;
+    self.textFieldRadius = textFieldRadius;
+    self.textFieldBorderWidth = textFieldBorderWidth;
+    self.textFieldFont = textFieldFont;
+    self.inactiveFieldBorderColor = inactiveFieldBorderColor;
+    self.textBackgroundColor = textBackgroundColor;
+    self.activeFieldBorderColor = activeFieldBorderColor;
+    self.textFieldColor = textFieldColor;
+    
+    super.init(frame: CGRect.zero);
+    setupStackView()
+    addOTPFields()
+  }
   
   required public init(coder: NSCoder) {
     super.init(coder: coder)
@@ -38,12 +51,12 @@ open class OTPStackView: UIStackView {
   
   //Customisation and setting stackView
   private final func setupStackView() {
-    self.backgroundColor = stackViewBackgroundColor
+    self.backgroundColor = .clear
     self.isUserInteractionEnabled = true
     self.translatesAutoresizingMaskIntoConstraints = false
     self.contentMode = .center
     self.distribution = .fillEqually
-    self.spacing = textFieldSpacing
+    self.spacing = 12
   }
   
   //Adding each OTPfield to stack view
