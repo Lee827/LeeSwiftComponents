@@ -26,7 +26,7 @@ open class OTPStackView: UIStackView {
   
   var remainingStrStack: [String] = []
   
-  required init(coder: NSCoder) {
+  required public init(coder: NSCoder) {
     super.init(coder: coder)
   }
   
@@ -126,7 +126,7 @@ open class OTPStackView: UIStackView {
 
 //MARK: - TextField Handling
 extension OTPStackView: UITextFieldDelegate {
-  func textFieldDidBeginEditing(_ textField: UITextField) {
+  public func textFieldDidBeginEditing(_ textField: UITextField) {
     if showsWarningColor {
       setAllFieldColor(color: inactiveFieldBorderColor)
       showsWarningColor = false
@@ -134,13 +134,13 @@ extension OTPStackView: UITextFieldDelegate {
     textField.layer.borderColor = activeFieldBorderColor.cgColor
   }
   
-  func textFieldDidEndEditing(_ textField: UITextField) {
+  public func textFieldDidEndEditing(_ textField: UITextField) {
     checkForValidity()
     textField.layer.borderColor = inactiveFieldBorderColor.cgColor
   }
   
   //switches between OTPTextfields
-  func textField(_ textField: UITextField, shouldChangeCharactersIn range:NSRange,
+  public func textField(_ textField: UITextField, shouldChangeCharactersIn range:NSRange,
                  replacementString string: String) -> Bool {
     guard let textField = textField as? OTPTextField else { return true }
     if string.count > 1 {
@@ -168,7 +168,7 @@ extension OTPStackView: UITextFieldDelegate {
   }
 }
 
-public protocol OTPDelegate: class {
+public protocol OTPDelegate: AnyObject {
   //always triggers when the OTP field is valid
   func didChangeValidity(isValid: Bool)
 }
