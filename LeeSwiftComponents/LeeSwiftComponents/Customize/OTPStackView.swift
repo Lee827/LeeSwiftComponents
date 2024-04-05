@@ -70,7 +70,6 @@ open class OTPStackView: UIStackView {
       //Adding a marker to next field for the field at index-1
       index != 0 ? (textFieldsCollection[index-1].nextTextField = field) : ()
     }
-    textFieldsCollection[0].becomeFirstResponder()
   }
   
   //Customisation and setting OTPTextFields
