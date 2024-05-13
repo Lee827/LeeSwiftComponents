@@ -104,7 +104,7 @@ open class OTPStackView: UIStackView {
   }
   
   //gives the OTP text
-  final func getOTP() -> String {
+  public final func getOTP() -> String {
     var OTP = ""
     for textField in textFieldsCollection {
       OTP += textField.text ?? ""
