@@ -69,14 +69,25 @@ public func getTextHeight(text:String, font:UIFont, width:CGFloat) -> CGFloat{
   return label.frame.height;
 }
 
-public func priceFormatter(_ value: String?, symbol: String? = "$") -> String {
-  guard value != nil else { return "$0"; }
+public func priceFormatter(_ value: String?, minDigits: Int? = 0, maxDigits: Int? = 1, symbol: String? = "$", currencyCode: String? = "HKD") -> String {
+  guard value != nil else { return "\(String(symbol ?? "$"))0"; }
   let doubleValue = Double(value!) ?? 0.0;
   let formatter = NumberFormatter();
-  formatter.currencyCode = "HKD";
+  formatter.currencyCode = currencyCode;
   formatter.currencySymbol = symbol;
-  formatter.minimumFractionDigits = 0;
-  formatter.maximumFractionDigits = 1;
+  formatter.minimumFractionDigits = minDigits ?? 0;
+  formatter.maximumFractionDigits = maxDigits ?? 1;
   formatter.numberStyle = .currencyAccounting;
   return formatter.string(from: NSNumber(value: doubleValue)) ?? "\(String(symbol ?? "$"))\(doubleValue)";
+}
+
+public func priceFormatter(_ value: Double?, minDigits: Int? = 0, maxDigits: Int? = 1, symbol: String? = "$", currencyCode: String? = "HKD") -> String {
+  guard let _value = value else { return "\(String(symbol ?? "$"))0"; }
+  let formatter = NumberFormatter();
+  formatter.currencyCode = currencyCode;
+  formatter.currencySymbol = symbol;
+  formatter.minimumFractionDigits = minDigits ?? 0;
+  formatter.maximumFractionDigits = maxDigits ?? 1;
+  formatter.numberStyle = .currencyAccounting;
+  return formatter.string(from: NSNumber(value: _value)) ?? "\(String(symbol ?? "$"))\(_value)";
 }
