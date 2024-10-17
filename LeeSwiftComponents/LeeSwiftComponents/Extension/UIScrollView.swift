@@ -6,13 +6,25 @@
 //
 
 public extension UIScrollView {
-  func scrollToTop(_ animated: Bool) {
+  func scrollToTop(_ animated: Bool, duration: TimeInterval? = nil) {
     let topOffset = CGPoint(x: 0, y: -contentInset.top);
-    setContentOffset(topOffset, animated: animated);
+    if animated, let _duration = duration {
+      UIView.animate(withDuration: _duration, animations: {
+        self.setContentOffset(topOffset, animated: false);
+      });
+    } else {
+      setContentOffset(topOffset, animated: animated);
+    }
   }
 
-  func scrollToBottom(_ animated: Bool) {
+  func scrollToBottom(_ animated: Bool, duration: TimeInterval? = nil) {
     let bottomOffset = CGPoint(x: 0, y: contentSize.height - bounds.size.height);
-    setContentOffset(bottomOffset, animated: animated);
+    if animated, let _duration = duration {
+      UIView.animate(withDuration: _duration, animations: {
+        self.setContentOffset(bottomOffset, animated: false);
+      });
+    } else {
+      setContentOffset(bottomOffset, animated: animated);
+    }
   }
 }
