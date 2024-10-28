@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "LeeSwiftComponents"
-  spec.version      = "1.0.1"
+  spec.version      = "1.0.2"
   spec.summary      = "Swift Components."
   spec.description  = "Swift Basic Components."
   spec.homepage     = "https://github.com/Lee827/LeeSwiftComponents"
