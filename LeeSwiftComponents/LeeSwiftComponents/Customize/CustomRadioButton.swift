@@ -10,24 +10,30 @@ open class CustomRadioButton: UIControl {
   var dotSize: CGFloat = 12;
   var spacing: CGFloat = 8;
 
-  let border = UIView().then {
-    $0.backgroundColor = .clear;
-    $0.layer.borderColor = UIColor.gray.cgColor;
-    $0.layer.borderWidth = 1;
-    $0.isUserInteractionEnabled = false;
-    $0.translatesAutoresizingMaskIntoConstraints = false;
+  var border: UIView {
+    let v = UIView();
+    v.backgroundColor = .clear;
+    v.layer.borderColor = UIColor.gray.cgColor;
+    v.layer.borderWidth = 1;
+    v.isUserInteractionEnabled = false;
+    v.translatesAutoresizingMaskIntoConstraints = false;
+    return v;
   }
   
-  let dot = UIView().then {
-    $0.backgroundColor = .black;
-    $0.isUserInteractionEnabled = false;
-    $0.translatesAutoresizingMaskIntoConstraints = false;
+  var dot: UIView {
+    let v = UIView();
+    v.backgroundColor = .black;
+    v.isUserInteractionEnabled = false;
+    v.translatesAutoresizingMaskIntoConstraints = false;
+    return v;
   }
   
-  let titleLabel = UILabel().then {
-    $0.font = UIFont.systemFont(ofSize: 15, weight: .regular);
-    $0.textColor = .gray;
-    $0.translatesAutoresizingMaskIntoConstraints = false;
+  var titleLabel: UILabel {
+    let l = UILabel();
+    l.font = UIFont.systemFont(ofSize: 15, weight: .regular);
+    l.textColor = .gray;
+    l.translatesAutoresizingMaskIntoConstraints = false;
+    return l;
   }
   
   required public init(borderSize: CGFloat = 16, dotSize: CGFloat = 12, spacing: CGFloat = 8) {
