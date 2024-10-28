@@ -10,37 +10,29 @@ open class CustomRadioButton: UIControl {
   var dotSize: CGFloat = 12;
   var spacing: CGFloat = 8;
 
-  var border: UIView {
-    let v = UIView();
-    v.backgroundColor = .clear;
-    v.layer.borderColor = UIColor.gray.cgColor;
-    v.layer.borderWidth = 1;
-    v.isUserInteractionEnabled = false;
-    v.translatesAutoresizingMaskIntoConstraints = false;
-    return v;
-  }
-  
-  var dot: UIView {
-    let v = UIView();
-    v.backgroundColor = .black;
-    v.isUserInteractionEnabled = false;
-    v.translatesAutoresizingMaskIntoConstraints = false;
-    return v;
-  }
-  
-  var titleLabel: UILabel {
-    let l = UILabel();
-    l.font = UIFont.systemFont(ofSize: 15, weight: .regular);
-    l.textColor = .gray;
-    l.translatesAutoresizingMaskIntoConstraints = false;
-    return l;
-  }
+  public let border = UIView();
+  public let dot = UIView();
+  public let titleLabel = UILabel();
   
   required public init(borderSize: CGFloat = 16, dotSize: CGFloat = 12, spacing: CGFloat = 8) {
     self.borderSize = borderSize;
     self.dotSize = dotSize;
     self.spacing = spacing;
     super.init(frame: CGRect.zero);
+    
+    border.backgroundColor = .clear;
+    border.layer.borderColor = UIColor.gray.cgColor;
+    border.layer.borderWidth = 1;
+    border.isUserInteractionEnabled = false;
+    border.translatesAutoresizingMaskIntoConstraints = false;
+    
+    dot.backgroundColor = .black;
+    dot.isUserInteractionEnabled = false;
+    dot.translatesAutoresizingMaskIntoConstraints = false;
+    
+    titleLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular);
+    titleLabel.textColor = .gray;
+    titleLabel.translatesAutoresizingMaskIntoConstraints = false;
     
     addSubview(border);
     border.addSubview(dot);
