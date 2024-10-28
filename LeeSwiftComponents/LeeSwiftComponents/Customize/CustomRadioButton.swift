@@ -73,7 +73,7 @@ open class CustomRadioButton: UIControl {
     fatalError("init(coder:) has not been implemented")
   }
     
-  override var isSelected: Bool {
+  public override var isSelected: Bool {
     didSet{
       dot.isHidden = !isSelected;
     }
