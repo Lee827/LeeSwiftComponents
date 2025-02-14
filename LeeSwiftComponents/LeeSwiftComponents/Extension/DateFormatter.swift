@@ -32,4 +32,16 @@ public extension DateFormatter {
     }
     return nil;
   }
+  
+  func getShortMonthString(month: Int, locale: Locale? = Locale(identifier: "en_US_POSIX"), timeZone: TimeZone? = TimeZone(abbreviation: "UTC")) -> String? {
+    let dateFormatter = DateFormatter();
+    dateFormatter.timeZone = timeZone;
+    dateFormatter.locale =  locale;
+    
+    return if let monthSymbols = dateFormatter.shortMonthSymbols, month > 0, month <= 12 {
+      monthSymbols[month - 1];
+    } else {
+      (month > 0 && month <= 12) ? "\(month)" : nil;
+    }
+  }
 }
