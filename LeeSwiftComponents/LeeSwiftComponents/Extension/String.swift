@@ -97,4 +97,16 @@ public extension String {
     return smartAttributedString.string;
   }
   
+  var safeURL: URL? {
+    if let directURL = URL(string: self), directURL.scheme != nil {
+      return directURL;
+    }
+    
+    if let encoded = self.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+       let encodedURL = URL(string: encoded), encodedURL.scheme != nil {
+      return encodedURL;
+    }
+    
+    return nil;
+  }
 }
