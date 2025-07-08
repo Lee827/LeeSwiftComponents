@@ -22,20 +22,6 @@ public extension String {
     return components(separatedBy: .whitespaces).joined();
   }
   
-  var htmlToAttributedString: NSAttributedString {
-    guard let data = data(using: .utf8) else { return NSAttributedString() }
-    do {
-      return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html,
-                                                          .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil);
-    } catch {
-      return NSAttributedString();
-    }
-  }
-  
-  var htmlToString: String {
-    return htmlToAttributedString.string;
-  }
-  
   func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
     let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude);
     let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil);
@@ -56,5 +42,71 @@ public extension String {
     paragraphStyle.lineBreakMode = .byTruncatingTail;
     let attributedString = NSAttributedString(string: self, attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle]);
     return attributedString;
+  }
+  
+  var smartAttributedString: NSAttributedString {
+    if containsEscapedHTML() {
+      let decoded = self.htmlUnescaped
+      return decoded.htmlToAttributedString;
+    } else if containsRawHTML() {
+      return self.htmlToAttributedString;
+    } else {
+      return NSAttributedString(string: self);
+    }
+  }
+  
+  private func containsRawHTML() -> Bool {
+    let pattern = "<[^>]+>";
+    return self.range(of: pattern, options: .regularExpression) != nil;
+  }
+  
+  private func containsEscapedHTML() -> Bool {
+    let pattern = "&lt;(\"[^\"]*\"|'[^']*'|[^'\"&gt;])*&gt;";
+    return self.range(of: pattern, options: .regularExpression) != nil;
+  }
+  
+  var htmlUnescaped: String {
+    let encodedData = Data(self.utf8);
+    let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
+      .documentType: NSAttributedString.DocumentType.html,
+      .characterEncoding: String.Encoding.utf8.rawValue
+    ]
+    if let attributedString = try? NSAttributedString(data: encodedData, options: options, documentAttributes: nil) {
+      return attributedString.string;
+    }
+    return self;
+  }
+  
+  var htmlToAttributedString: NSAttributedString {
+    guard let data = data(using: .utf8) else { return NSAttributedString(string: self) }
+    do {
+      return try NSAttributedString(
+        data: data,
+        options: [
+          .documentType: NSAttributedString.DocumentType.html,
+          .characterEncoding: String.Encoding.utf8.rawValue
+        ],
+        documentAttributes: nil
+      );
+    } catch {
+      return NSAttributedString(string: self);
+    }
+  }
+  
+  var htmlToString: String {
+    return smartAttributedString.string;
+  }
+  
+  var safeURL: URL? {
+    if let directURL = URL(string: self), directURL.scheme != nil {
+      return directURL;
+    }
+    
+    if let encoded = self.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+       let encodedURL = URL(string: encoded), encodedURL.scheme != nil {
+      return encodedURL;
+    }
+    
+    return nil;
   }
 }
