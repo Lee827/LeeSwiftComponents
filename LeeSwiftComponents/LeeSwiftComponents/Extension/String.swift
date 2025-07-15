@@ -55,6 +55,10 @@ public extension String {
     }
   }
   
+  var isHTML: Bool {
+    return (containsEscapedHTML() || containsRawHTML());
+  }
+  
   private func containsRawHTML() -> Bool {
     let pattern = "<[^>]+>";
     return self.range(of: pattern, options: .regularExpression) != nil;
