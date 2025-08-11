@@ -6,14 +6,18 @@
 //
 
 public extension DateFormatter {
-  func dateFormat(string: String, from: String? = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", changeTo: String? = "yyyy/MM/dd", locale: Locale? = Locale(identifier: "en_US_POSIX"), timeZone: TimeZone? = TimeZone(abbreviation: "UTC")) -> String {
-    let dateFormatter = DateFormatter();
-    dateFormatter.dateFormat = from;
-    dateFormatter.timeZone = timeZone;
-    dateFormatter.locale =  locale;
-    if let formateDate = dateFormatter.date(from: string) {
-      dateFormatter.dateFormat = changeTo;
-      return dateFormatter.string(from: formateDate);
+  func dateFormat(string: String, from: String? = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", changeTo: String? = "yyyy/MM/dd", locale: Locale? = Locale(identifier: "en_US_POSIX"), fromTimeZone: TimeZone? = TimeZone(abbreviation: "UTC"), toTimeZone: TimeZone? = TimeZone.current) -> String {
+    let inputFormatter = DateFormatter();
+    inputFormatter.dateFormat = from;
+    inputFormatter.timeZone = fromTimeZone;
+    inputFormatter.locale = Locale(identifier: "en_US_POSIX");
+    
+    if let formateDate = inputFormatter.date(from: string) {
+      let outputFormatter = DateFormatter();
+      outputFormatter.dateFormat = changeTo;
+      outputFormatter.locale =  locale;
+      outputFormatter.timeZone = toTimeZone;
+      return outputFormatter.string(from: formateDate);
     }
     return string;
   }
