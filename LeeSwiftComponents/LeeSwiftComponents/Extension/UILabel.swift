@@ -54,4 +54,24 @@ public extension UILabel {
     borderLayer.strokeColor = color.cgColor;
     self.layer.addSublayer(borderLayer);
   }
+  
+  func addIconToString(_ text: String, icon: UIImage? = nil, y: CGFloat? = 0, width: CGFloat? = nil, height: CGFloat? = nil, onLeft: Bool? = true) {
+    guard let icon = icon else {
+      self.text = text;
+      return;
+    }
+    let attachment = NSTextAttachment(image: icon);
+    attachment.bounds = CGRect(x: 0, y: y ?? 0, width: width ?? icon.size.width, height: height ?? icon.size.height);
+    
+    let fullText = NSMutableAttributedString();
+    if onLeft! {
+      fullText.append(NSAttributedString(attachment: attachment));
+      fullText.append(NSAttributedString(string: text));
+    } else {
+      fullText.append(NSAttributedString(string: text));
+      fullText.append(NSAttributedString(attachment: attachment));
+    }
+    
+    self.attributedText = fullText;
+  }
 }
