@@ -22,6 +22,15 @@ public extension DateFormatter {
     return string;
   }
   
+  func dateFormat(date: Date, changeTo: String? = "yyyy/MM/dd", locale: Locale? = Locale(identifier: "en_US_POSIX"), timeZone: TimeZone? = TimeZone.current) -> String {
+    let inputFormatter = DateFormatter();
+    inputFormatter.dateFormat = changeTo;
+    inputFormatter.timeZone = timeZone;
+    inputFormatter.locale = locale;
+    
+    return inputFormatter.string(from: date);
+  }
+  
   func distanceNow(string: String, from: String? = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", locale: Locale? = Locale(identifier: "en_US_POSIX"), timeZone: TimeZone? = TimeZone(abbreviation: "UTC")) -> Int? {
     let dateFormatter = DateFormatter();
     dateFormatter.dateFormat = from;
